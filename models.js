@@ -15,4 +15,5 @@ exports = module.exports = function(app, mongoose) {
 
   // entities
   require('./schema/Item')(app, mongoose);
+  require('./schema/Purchase')(app, mongoose);
 };

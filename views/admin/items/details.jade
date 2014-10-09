@@ -17,7 +17,9 @@ block body
     div.page-header
       h1
         a(href='/admin/items/') Items
-        |  / <%- name %>
+        |  / <%- name %> 
+    div.item-sold
+      legend Total Sold: <%- purchases.length %>
 
   script(type='text/template', id='tmpl-details')
     fieldset
@@ -59,6 +61,9 @@ block body
         label.control-label Image Uri:
         input.form-control(type='text', name='imageUri', value!=imageUri)
         span.help-block <%= errfor.imageUri %>  
+      div.control-group(class!='<%= errfor.imageUri ? "has-error" : "" %>')
+        label.control-label No. Sold:  
+        <%- soldCount %>
       div.control-group
         button.btn.btn-primary.btn-update(type='button') Update
 

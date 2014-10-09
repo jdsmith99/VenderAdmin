@@ -29,12 +29,13 @@
     defaults: {
       success: false,
       errors: [],
+      purchases: [],
       errfor: {},
       name: '',
       description: '',
       code: '',
       cost: '',
-      active: false,
+      active: 'no',
       imageUri: ''
 
     },
@@ -85,7 +86,9 @@
         code: app.mainView.model.get('code'),
         cost: app.mainView.model.get('cost'),
         active: app.mainView.model.get('active'),
-        imageUri: app.mainView.model.get('imageUri')
+        imageUri: app.mainView.model.get('imageUri'),
+        purchases: app.mainView.model.get('purchases'),
+        soldCount: app.mainView.model.get('soldCount')
       });
     },
     render: function() {

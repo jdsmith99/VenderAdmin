@@ -23,6 +23,7 @@ exports = module.exports = function(app, mongoose) {
       time: { type: Date, default: Date.now }
     },
     ratings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    purchases: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Purchase' }],
     order : { type: Number},
     //purchases : [{ type: Schema.Types.ObjectId, ref: 'Purchase'}],
     //exceptions : [{type : Schema.Types.ObjectId, ref: 'Exception'}],

@@ -38,6 +38,8 @@ block body
             option(value='-_id') id &#9660;
             option(value='name') name &#9650;
             option(value='-name') name &#9660;
+            option(value='active') active &#9650;
+            option(value='-active') active &#9660;
         div.col-sm-3
           label Limit
           select.form-control(name='limit')
@@ -52,14 +54,18 @@ block body
         tr
           th
           th.stretch name
+          th active
           th id
+          th.nowrap # sold
       tbody#results-rows
 
   script(type='text/template', id='tmpl-results-row')
     td
       input.btn.btn-default.btn-sm.btn-details(type='button', value='Edit')
     td <%- name %>
+    td <%- active %>
     td.nowrap <%= _id %>
+    td.nowrap <%- purchases.length %>
 
   script(type='text/template', id='tmpl-results-empty-row')
     tr

@@ -1,6 +1,8 @@
 'use strict';
 
 exports.find = function(req, res, next){
+  console.log("finding");
+
   req.query.name = req.query.name ? req.query.name : '';
   req.query.limit = req.query.limit ? parseInt(req.query.limit, null) : 20;
   req.query.page = req.query.page ? parseInt(req.query.page, null) : 1;
@@ -14,7 +16,7 @@ exports.find = function(req, res, next){
 
   req.app.db.models.Item.pagedFind({
     filters: filters,
-    keys: 'name description',
+    keys: 'name description purchases active',
     limit: req.query.limit,
     page: req.query.page,
     sort: req.query.sort
@@ -32,7 +34,7 @@ exports.find = function(req, res, next){
 
       results.filters = req.query;
       res.render('admin/items/index', { data: { results: escape(JSON.stringify(results)) } });
-      console.log("results: " + JSON.stringify(results));
+      //console.log("results: " + JSON.stringify(results));
       
     }
   });
@@ -48,8 +50,9 @@ exports.read = function(req, res, next){
       res.send(item);
     }
     else {
-      
+      //req.app.db.models.Purchase.count({ "item" : req.params.id }).exec(function (err, count) {
       res.render('admin/items/details', { data: { record: escape(JSON.stringify(item)) } });
+      //res.render('admin/items/details', { data: { record: escape(JSON.stringify(newObject)) } });
     }
   });
 };
@@ -70,7 +73,7 @@ exports.create = function(req, res, next){
 
     workflow.on('duplicateItemCheck', function() {
 
-  });
+    });
 
     req.app.db.models.Item.findOne( { name : req.body.name }).exec(function(err, item) {
       if (err) {
@@ -90,7 +93,7 @@ exports.create = function(req, res, next){
   workflow.on('createItem', function() {
     var fieldsToSet = {
       name: req.body.name
-      };
+    };
 
     req.app.db.models.Item.create(fieldsToSet, function(err, item) {
       if (err) {
@@ -143,7 +146,6 @@ exports.update = function(req, res, next){
       active: req.body.active,
       imageUri: req.body.imageUri,
       order: orderNumber
-
     };
 
     req.app.db.models.Item.findByIdAndUpdate(req.params.id, fieldsToSet, function(err, item) {

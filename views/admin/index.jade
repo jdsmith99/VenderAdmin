@@ -18,8 +18,9 @@ block body
             div.stat-label Users
         div.col-sm-4
           div.well.stat
-            div.stat-value #{countAccount}
-            div.stat-label Accounts
+            a(href='/admin/accounts/')
+              div.stat-value #{countAccount}
+              div.stat-label Accounts
         div.col-sm-4
           div.well.stat
             div.stat-value #{countAdmin}
@@ -31,12 +32,13 @@ block body
             div.stat-label Groups
         div.col-sm-4
           div.well.stat
-            div.stat-value #{countCategory}
-            div.stat-label Categories
+            div.stat-value #{countPurchase}
+            div.stat-label Purchases
         div.col-sm-4
           div.well.stat
-            div.stat-value #{countItem}
-            div.stat-label Items
+            a(href='/admin/items/')
+              div.stat-value #{countItem}
+              div.stat-label Items 
     div.col-sm-6.special
       div.page-header
         h1 Super Dashboard
